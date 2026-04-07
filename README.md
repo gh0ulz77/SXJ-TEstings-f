@@ -1,6 +1,11 @@
 # SXJ Embedded System Labs
 ### Secure X-Core J-Frame
 
+> [!WARNING]
+> **CONFIDENTIAL & PROPRIETARY PROPERTY**  
+> Unauthorized access, distribution, or reproduction of this repository's contents is strictly prohibited under the SXJ Proprietary License.
+
+
 ## Overview
 **SXJ Embedded System Labs** is a specialized research and development duo focused on high-performance, hardened embedded systems. We leverage the **Secure X-Core J-Frame (SXJ)** architecture to bridge the gap between bare-metal silicon and enterprise-grade software integration.
 
