@@ -23,10 +23,12 @@ Our methodology is built on three foundational pillars:
 ---
 
 ## Collaboration & Licensing
-SXJ Embedded System Labs operates as a closed-beta R&D group. For inquiries regarding project collaboration or hardware auditing:
+SXJ Embedded System Labs operates as a closed-beta R&D group. This repository and all contained assets are protected under the **SXJ Proprietary License (2026)**.
+
+For inquiries regarding project collaboration or hardware auditing:
 
 **SXJ Embedded System Labs | Secure X-Core J-Frame**  
-*Precision Hardware. Hardened Logic.*
+*Secure by Design. Driven by X-Core. SXJ: Precision Embedded Systems. Proprietary Excellence.*
 
 ---
 © 2026 SXJ Embedded System Labs. All rights reserved.
