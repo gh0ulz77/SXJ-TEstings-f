@@ -1,0 +1,144 @@
+#include <Wire.h>
+#include <Adafruit_GFX.h>
+#include <Adafruit_SSD1306.h>
+
+#define SCREEN_WIDTH 128
+#define SCREEN_HEIGHT 64
+Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, -1);
+
+// Joystick
+#define JOY_Y 35
+
+// Touch sensor
+#define TOUCH_PIN 4
+
+// Bird
+int birdY = 32;
+
+// Pipe
+int pipeX = 128;
+int gapY = 20;
+int gapSize = 25;
+
+// Game
+bool gameOver = false;
+int score = 0;
+
+bool lastTouch = false;
+
+void setup() {
+  Wire.begin(21,22);
+  Serial.begin(115200);
+
+  pinMode(TOUCH_PIN, INPUT);
+
+  if(!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)){
+    while(1);
+  }
+
+  display.clearDisplay();
+}
+
+void loop() {
+
+  bool touch = digitalRead(TOUCH_PIN);
+
+  if(gameOver){
+    showGameOver();
+
+    // 🔄 Restart with touch
+    if(touch && !lastTouch){
+      resetGame();
+      delay(300);
+    }
+
+    lastTouch = touch;
+    return;
+  }
+
+  int joyY = analogRead(JOY_Y);
+
+  // 🎮 MOVE UP
+  if(joyY < 1200){
+    birdY -= 2;
+  }
+
+  // 🎮 MOVE DOWN
+  if(joyY > 2800){
+    birdY += 2;
+  }
+
+  // Boundaries
+  if(birdY < 0) birdY = 0;
+  if(birdY > 63) birdY = 63;
+
+  // Move pipe
+  pipeX -= 2;
+
+  // Reset pipe
+  if(pipeX < -10){
+    pipeX = 128;
+    gapY = random(10, 40);
+    score++;
+  }
+
+  // Collision
+  if(
+    (birdY < gapY || birdY > gapY + gapSize) &&
+    (pipeX < 25 && pipeX > 10)
+  ){
+    gameOver = true;
+  }
+
+  drawGame();
+  delay(40);
+
+  lastTouch = touch;
+}
+
+// 🎨 DRAW
+void drawGame(){
+  display.clearDisplay();
+
+  // Bird
+  display.fillCircle(20, birdY, 3, WHITE);
+
+  // Pipes
+  display.fillRect(pipeX, 0, 10, gapY, WHITE);
+  display.fillRect(pipeX, gapY + gapSize, 10, 64, WHITE);
+
+  // Score
+  display.setCursor(0,0);
+  display.setTextSize(1);
+  display.print("Score: ");
+  display.println(score);
+
+  display.display();
+}
+
+// 💀 GAME OVER
+void showGameOver(){
+  display.clearDisplay();
+
+  display.setTextSize(2);
+  display.setCursor(10,20);
+  display.println("GAME");
+
+  display.setCursor(10,40);
+  display.println("OVER");
+
+  display.setTextSize(1);
+  display.setCursor(0,0);
+  display.print("Score: ");
+  display.println(score);
+
+  display.display();
+}
+
+// 🔄 RESET
+void resetGame(){
+  birdY = 32;
+  pipeX = 128;
+  score = 0;
+  gameOver = false;
+}
