@@ -7,7 +7,7 @@
 
 
 ## Overview
-**SXJ Embedded System Labs** is a specialized research and development duo focused on high-performance, hardened embedded systems. We leverage the **Secure X-Core J-Frame (SXJ)** architecture to bridge the gap between bare-metal silicon and enterprise-grade software integration.
+**SXJ Embedded System Labs** is a specialized research and development group focused on high-performance, hardened embedded systems. We leverage the **Secure X-Core J-Frame (SXJ)** architecture to bridge the gap between bare-metal silicon and enterprise-grade software integration.
 
 Our core mission is the development of resilient IoT infrastructure, primarily utilizing the **Xtensa® Dual-Core (X-Core)** processor environment to deliver low-latency, encrypted data pipelines.
 
