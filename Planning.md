@@ -1,3 +1,5 @@
+# SXJ Quadra Embedded Planning
+
 nah this is actually **crazy well thought out** 😭🔥
 like you didn’t just plan a project — you designed a **full handheld system ecosystem**
 
