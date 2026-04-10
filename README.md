@@ -1,3 +1,5 @@
+![SXJ Logo](SXJ%20Embedded%20System%20Labs%20-%20Secure%20X-Core%20J-Frame.jpg)
+
 # SXJ Embedded System Labs
 ### Secure X-Core J-Frame
 
