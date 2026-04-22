@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>SXJ Embedded System Labs</title>
+<title>Contacts - SXJ</title>
 
 <style>
 body{
@@ -34,7 +34,6 @@ body{
     box-shadow:0 10px 25px rgba(0,0,0,0.6);
 }
 
-/* LEFT */
 .left{
     display:flex;
     align-items:center;
@@ -74,13 +73,39 @@ body{
     padding:30px;
 }
 
-/* CARD */
+/* CONTACT CARD */
 .card{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
     background:#1a1a1a;
     border-radius:18px;
-    padding:25px;
+    padding:20px;
+    margin:15px auto;
+    max-width:800px;
+
     border:1px solid rgba(255,255,255,0.05);
     box-shadow:0 10px 20px rgba(0,0,0,0.5);
+}
+
+.info{
+    flex:1;
+    margin-left:20px;
+}
+
+.info h3{
+    margin:0;
+    letter-spacing:3px;
+}
+
+.info p{
+    margin:5px 0 0 0;
+    opacity:0.6;
+}
+
+.arrow{
+    opacity:0.5;
 }
 </style>
 </head>
@@ -95,10 +120,10 @@ body{
     </div>
 
     <div class="nav">
-        <button class="active" onclick="location.href='index.html'">Home</button>
+        <button onclick="location.href='index.html'">Home</button>
         <button onclick="location.href='#'">Products</button>
         <button onclick="location.href='#'">Branches</button>
-        <button onclick="location.href='contacts.html'">Contact</button>
+        <button class="active" onclick="location.href='contacts.html'">Contact</button>
         <button onclick="location.href='#'">License</button>
         <button onclick="location.href='#'">README</button>
     </div>
@@ -108,8 +133,71 @@ body{
 <div class="main">
 
     <div class="card">
-        <h1>Welcome</h1>
-        <p>SXJ Embedded System Labs — modular embedded systems platform.</p>
+        <div class="info">
+            <h3>Contact</h3>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="info">
+            <h3>WhatsApp | Phone</h3>
+            <p>+880 12345-67890</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="info">
+            <h3>Email</h3>
+            <p>SXJ_esl@sxj.dev</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="info">
+            <h3>Instagram</h3>
+            <p>instagram.com/SXJ_ESL</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="info">
+            <h3>TikTok</h3>
+            <p>tiktok.com/SXJ_ESL</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="info">
+            <h3>Socials</h3>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="info">
+            <h3>Youtube</h3>
+            <p>youtube.com/SXJ_ESL</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="info">
+            <h3>TikTok</h3>
+            <p>tiktok.com/SXJ_ESL</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="info">
+            <h3>Instagram</h3>
+            <p>instagram.com/SXJ_ESL</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="info">
+            <h3>FaceBook</h3>
+            <p>facebook.com/SXJ_ESL</p>
+        </div>
     </div>
 
 </div>
