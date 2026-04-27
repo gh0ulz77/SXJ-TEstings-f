@@ -6,12 +6,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-html, body{
-    margin:0;
-    padding:0;
-    overflow-x:hidden;
-}
-
 body{
     margin:0;
     font-family:Segoe UI, sans-serif;
@@ -82,14 +76,8 @@ body{
 
 /* MAIN */
 .main{
-    margin-top:120px;
-    padding:20px;
-
-    display:flex;
-    flex-direction:column;
-    gap:16px;
-
-    width:100%;
+    margin-top:140px;
+    padding:30px;
 }
 
 /* CARD */
@@ -122,180 +110,11 @@ body.loaded{
     opacity:1;
 }
 
-@media (max-width:768px){
 
-    /* TOPBAR */
-      .topbar{
-        position:fixed;
-        top:15px;
-
-        left:50%;
-        transform:translateX(-50%);
-
-        width:90%;
-
-        padding:12px 16px;
-        border-radius:16px;
-
-        display:flex;
-        justify-content:space-between;
-        align-items:center;
-    }
-
-    /* NAV → scrollable */
-    .nav{
-        display:flex;
-        gap:8px;
-        overflow-x:auto;
-        padding-bottom:5px;
-
-        scrollbar-width:none;
-    }
-
-    .nav::-webkit-scrollbar{
-        display:none;
-    }
-
-    .nav button{
-        flex:0 0 auto;
-        padding:8px 12px;
-        font-size:12px;
-    }
-
-    /* MAIN */
-    .main{
-        padding:20px;
-        display:flex;
-        flex-direction:column;
-        gap:16px;
-    }
-
-    /* CARDS */
-    .card{
-        width:100%;
-        margin:0;
-        padding:18px;
-        border-radius:14px;
-    }
-
-    /* PRODUCT CARDS (VERY IMPORTANT) */
-    .card.product{
-        flex-direction:column !important;
-        align-items:flex-start !important;
-    }
-
-    /* BUTTONS */
-    button{
-        width:100%;
-        padding:12px;
-        font-size:14px;
-    }
-
-    /* TEXT */
-    h1{
-        font-size:20px;
-    }
-
-    p{
-        font-size:14px;
-    }
-
-    .nav{
-        display:none;
-    }
-}
-
-.drawer{
-    position:fixed;
-    top:0;
-    left:-260px;
-    width:260px;
-    height:100%;
-
-    background:#111;
-    padding:20px;
-
-    display:flex;
-    flex-direction:column;
-    gap:10px;
-
-    transition:0.3s ease;
-    z-index:9999;
-}
-
-.drawer{
-    position:fixed;
-    top:0;
-    left:-260px;
-    width:260px;
-    height:100%;
-}
-
-.drawer.active{
-    left:0;
-}
-
-.drawer button{
-    padding:12px;
-    border:none;
-    border-radius:10px;
-
-    background:#1a1a1a;
-    color:white;
-
-    text-align:left;
-}
-
-.drawer-overlay{
-    position:fixed;
-    inset:0;
-
-    background:rgba(0,0,0,0.5);
-
-    opacity:0;
-    pointer-events:none;
-
-    transition:0.3s;
-    z-index:9998;
-}
-
-.drawer-overlay.active{
-    opacity:1;
-    pointer-events:auto;
-}
-
-.menu-btn{
-    display:none;
-}
-
-@media (max-width:768px){
-    .menu-btn{
-        display:block;
-        font-size:22px;
-        cursor:pointer;
-    }
-}
-
-body{
-    overflow-x:hidden;
-}
 </style>
 </head>
 
 <body>
-
-    <div id="drawer" class="drawer">
-
-    <button onclick="go('index.html')">Home</button>
-    <button onclick="go('products.html')">Products</button>
-    <button onclick="go('branches.html')">Branches</button>
-    <button onclick="go('contacts.html')">Contact</button>
-    <button onclick="go('license.html')">License</button>
-    <button onclick="go('readme.html')">README</button>
-
-</div>
-
-<div id="drawerOverlay" class="drawer-overlay" onclick="toggleMenu()"></div>
 
 <div class="topbar">
 
@@ -312,8 +131,6 @@ body{
         <button onclick="go('license.html')">License</button>
         <button onclick="go('readme.html')">README</button>
     </div>
-
-    <div class="menu-btn" onclick="toggleMenu()">☰</div>
 
 </div>
 
@@ -343,12 +160,6 @@ function go(url){
     setTimeout(()=>{
         window.location.href = url;
     }, 200);
-}
-
-
-function toggleMenu(){
-    document.getElementById("drawer").classList.toggle("active");
-    document.getElementById("drawerOverlay").classList.toggle("active");
 }
 </script>
 </body>
