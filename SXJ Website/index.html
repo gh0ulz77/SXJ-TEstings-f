@@ -114,10 +114,15 @@ body.loaded{
 
     /* TOPBAR */
     .topbar{
-        flex-direction:column;
-        align-items:flex-start;
-        gap:10px;
-        padding:15px;
+        left:0;
+        transform:none;
+
+        width:calc(100% - 20px); /* space on sides */
+        margin:10px;
+
+        padding:12px 16px;
+
+        border-radius:16px;
     }
 
     /* NAV → scrollable */
@@ -177,11 +182,91 @@ body.loaded{
     p{
         font-size:14px;
     }
+
+    .nav{
+        display:none;
+    }
+}
+
+.drawer{
+    position:fixed;
+    top:0;
+    left:-260px;
+    width:260px;
+    height:100%;
+
+    background:#111;
+    padding:20px;
+
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+
+    transition:0.3s ease;
+    z-index:9999;
+}
+
+.drawer.active{
+    left:0;
+}
+
+.drawer button{
+    padding:12px;
+    border:none;
+    border-radius:10px;
+
+    background:#1a1a1a;
+    color:white;
+
+    text-align:left;
+}
+
+.drawer-overlay{
+    position:fixed;
+    inset:0;
+
+    background:rgba(0,0,0,0.5);
+
+    opacity:0;
+    pointer-events:none;
+
+    transition:0.3s;
+    z-index:9998;
+}
+
+.drawer-overlay.active{
+    opacity:1;
+    pointer-events:auto;
+}
+
+.menu-btn{
+    display:none;
+}
+
+@media (max-width:768px){
+    .menu-btn{
+        display:block;
+        font-size:22px;
+        cursor:pointer;
+    }
 }
 </style>
 </head>
 
 <body>
+
+    <div id="drawer" class="drawer">
+
+    <button onclick="go('index.html')">Home</button>
+    <button onclick="go('products.html')">Products</button>
+    <button onclick="go('branches.html')">Branches</button>
+    <button onclick="go('contacts.html')">Contact</button>
+    <button onclick="go('license.html')">License</button>
+    <button onclick="go('readme.html')">README</button>
+
+</div>
+
+<div id="drawerOverlay" class="drawer-overlay" onclick="toggleMenu()"></div>
 
 <div class="topbar">
 
@@ -198,6 +283,8 @@ body.loaded{
         <button onclick="go('license.html')">License</button>
         <button onclick="go('readme.html')">README</button>
     </div>
+
+    <div class="menu-btn" onclick="toggleMenu()">☰</div>
 
 </div>
 
@@ -227,6 +314,12 @@ function go(url){
     setTimeout(()=>{
         window.location.href = url;
     }, 200);
+}
+
+
+function toggleMenu(){
+    document.getElementById("drawer").classList.toggle("active");
+    document.getElementById("drawerOverlay").classList.toggle("active");
 }
 </script>
 </body>
