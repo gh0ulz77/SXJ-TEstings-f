@@ -6,6 +6,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
+html, body{
+    margin:0;
+    padding:0;
+    overflow-x:hidden;
+}
+
 body{
     margin:0;
     font-family:Segoe UI, sans-serif;
@@ -76,8 +82,14 @@ body{
 
 /* MAIN */
 .main{
-    margin-top:140px;
-    padding:30px;
+    margin-top:120px;
+    padding:20px;
+
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+
+    width:100%;
 }
 
 /* CARD */
@@ -113,18 +125,21 @@ body.loaded{
 @media (max-width:768px){
 
     /* TOPBAR */
-     .topbar{
+      .topbar{
+        position:fixed;
+        top:15px;
+
         left:50%;
         transform:translateX(-50%);
 
-        width:92%; /* clean safe width */
-        max-width:none;
-
-        margin:0; /* IMPORTANT: remove margin */
+        width:90%;
 
         padding:12px 16px;
-
         border-radius:16px;
+
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
     }
 
     /* NAV → scrollable */
@@ -211,8 +226,9 @@ body.loaded{
 .drawer{
     position:fixed;
     top:0;
-    left:-260px; /* must match width */
+    left:-260px;
     width:260px;
+    height:100%;
 }
 
 .drawer.active{
