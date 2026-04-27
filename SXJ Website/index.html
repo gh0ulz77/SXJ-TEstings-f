@@ -113,12 +113,14 @@ body.loaded{
 @media (max-width:768px){
 
     /* TOPBAR */
-    .topbar{
-        left:0;
-        transform:none;
+     .topbar{
+        left:50%;
+        transform:translateX(-50%);
 
-        width:calc(100% - 20px); /* space on sides */
-        margin:10px;
+        width:92%; /* clean safe width */
+        max-width:none;
+
+        margin:0; /* IMPORTANT: remove margin */
 
         padding:12px 16px;
 
@@ -206,6 +208,13 @@ body.loaded{
     z-index:9999;
 }
 
+.drawer{
+    position:fixed;
+    top:0;
+    left:-260px; /* must match width */
+    width:260px;
+}
+
 .drawer.active{
     left:0;
 }
@@ -249,6 +258,10 @@ body.loaded{
         font-size:22px;
         cursor:pointer;
     }
+}
+
+body{
+    overflow-x:hidden;
 }
 </style>
 </head>
