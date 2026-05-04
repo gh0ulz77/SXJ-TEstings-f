@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - February Package - SXJ</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Segoe UI, sans-serif;
+            background: #0b0b0b;
+            color: white;
+        }
+
+        /* TOP BAR */
+        .topbar {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 92%;
+            max-width: 1200px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            padding: 14px 20px;
+
+            background: #1a1a1a;
+            border-radius: 18px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+        }
+
+        .topbar {
+            position: fixed;
+            z-index: 999;
+        }
+
+        .left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo {
+            width: 100px;
+            height: 50px;
+            border-radius: 10px;
+        }
+
+        /* NAV */
+        .nav {
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav button {
+            padding: 9px 14px;
+            border: none;
+            border-radius: 999px;
+
+            background: transparent;
+            color: #aaa;
+            cursor: pointer;
+        }
+
+        .nav button.active {
+            background: white;
+            color: black;
+        }
+
+        /* MAIN */
+        .main {
+            margin-top: 140px;
+            padding: 30px;
+        }
+
+        /* CONTACT CARD */
+        .card {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            background: #1a1a1a;
+            border-radius: 18px;
+            padding: 20px;
+            margin: 15px auto;
+            max-width: 800px;
+
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .card.product {
+            flex-direction: column !important;
+            align-items: flex-start !important;
+            justify-content: flex-start !important;
+            gap: 12px;
+        }
+
+        .info {
+            flex: 1;
+            margin-left: 20px;
+        }
+
+        .info h3 {
+            margin: 0;
+            letter-spacing: 3px;
+        }
+
+        .info p {
+            margin: 5px 0 0 0;
+            opacity: 0.6;
+        }
+
+        .card {
+            transition: 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            background: #222;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6);
+        }
+
+        body {
+            opacity: 0;
+            transition: opacity 0.25s ease;
+        }
+
+        /* when page is ready */
+        body.loaded {
+            opacity: 1;
+        }
+
+        .product-card {
+            margin: 15px auto;
+            max-width: 800px;
+            padding: 20px;
+
+            background: #1a1a1a;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+
+            transition: 0.2s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-3px);
+            background: #222;
+        }
+
+        .product-card button {
+            margin-top: 10px;
+            padding: 8px 14px;
+            border: none;
+            border-radius: 10px;
+
+            background: white;
+            color: black;
+            cursor: pointer;
+        }
+
+        #toast {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translate(-50%, 20px);
+
+            z-index: 99999;
+            /* 👈 KEY FIX */
+
+            background: #1a1a1a;
+            padding: 12px 20px;
+            border-radius: 10px;
+
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        /* ACTIVE STATE */
+        #toast.show {
+            opacity: 1;
+            transform: translate(-50%, 0);
+        }
+
+        .back-btn {
+            padding: 10px 16px;
+
+            background: #1a1a1a;
+            color: white;
+
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+
+            cursor: pointer;
+
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+
+            transition: 0.2s ease;
+
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+            background: #222;
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.6);
+        }
+
+        .back-btn:active {
+            transform: translateY(0px);
+        }
+
+        .product-detail {
+            max-width: 800px;
+            margin: 20px auto;
+        }
+
+        .product-img {
+            width: 120px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+
+        .desc {
+            opacity: 0.7;
+        }
+
+        .specs {
+            margin-top: 15px;
+            opacity: 0.85;
+        }
+
+        .order-btn {
+            margin-top: 20px;
+            padding: 10px 16px;
+            background: white;
+            color: black;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+        }
+
+        .price-box {
+            margin-top: 10px;
+
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .price {
+            font-size: 20px;
+            font-weight: 600;
+            color: white;
+        }
+
+        .status {
+            font-size: 12px;
+            padding: 4px 8px;
+            border-radius: 999px;
+
+            background: #1f3d1f;
+            color: #7CFF9B;
+        }
+
+        .divider {
+            width: 100%;
+            height: 1px;
+
+            background: rgba(255, 255, 255, 0.08);
+
+            margin: 12px 0;
+        }
+
+        .status {
+            font-size: 12px;
+            padding: 4px 8px;
+            border-radius: 999px;
+        }
+
+        /* states */
+        .status.in {
+            background: #1f3d1f;
+            color: #7CFF9B;
+        }
+
+        .status.limited {
+            background: #3d321f;
+            color: #ffcc66;
+        }
+
+        .status.out {
+            background: #3d1f1f;
+            color: #ff7c7c;
+        }
+
+        .order-panel {
+            position: fixed;
+            inset: 0;
+
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+
+            padding-bottom: env(safe-area-inset-bottom, 20px);
+            /* key fix */
+
+            transform: translateY(100%);
+            transition: 0.4s ease;
+            z-index: 9999;
+        }
+
+        .order-panel.active {
+            transform: translateY(0);
+        }
+
+        .order-card {
+            width: 100%;
+            max-width: 500px;
+
+            margin: 0 10px 20px;
+            /* adds bottom breathing space */
+
+            background: #1a1a1a;
+            border-radius: 20px;
+            padding: 20px;
+
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+
+            box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.6);
+        }
+
+        .order-card {
+            margin: 0 10px 40px;
+        }
+
+        /* inputs */
+        .order-card input {
+            padding: 10px;
+            border-radius: 10px;
+            border: none;
+        }
+
+        /* buttons */
+        .order-card button {
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+
+            background: white;
+            color: black;
+            cursor: pointer;
+        }
+
+        /* overlay */
+        .order-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            z-index: 9998;
+        }
+
+        .order-card button:last-child {
+            background: #333;
+            color: #aaa;
+        }
+
+        .order-overlay.active {
+            display: block;
+        }
+
+        /* product preview */
+        .product-preview {
+            background: #111;
+            padding: 12px;
+            border-radius: 12px;
+        }
+
+        .topbar{
+    display:flex;
+    flex-direction:column; /* forces 2 rows */
+
+    padding:12px 16px;
+    gap:10px;
+
+    background:#111;
+    color:white;
+}
+
+/* top row */
+.left{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+/* logo fix */
+.logo{
+    height:32px;
+    width:auto; /* prevents deformation */
+}
+
+/* nav row */
+.nav{
+    display:flex;
+    flex-wrap:wrap; /* KEY: moves buttons to next line */
+    gap:6px;
+}
+
+.nav button{
+    font-size:12px;
+    padding:6px 10px;
+}
+
+@media (min-width:768px){
+
+    .topbar{
+        padding:15px 30px;
+    }
+
+    .logo{
+        height:40px;
+    }
+
+    .nav{
+        gap:10px;
+    }
+
+    .nav button{
+        font-size:14px;
+        padding:8px 14px;
+    }
+}
+
+@media (min-width:768px){
+
+    .topbar{
+        flex-direction:row;              /* back to single row */
+        align-items:center;
+        justify-content:space-between;
+    }
+
+    .nav{
+        flex-wrap:nowrap;                /* keep buttons in one line */
+    }
+}
+
+.nav{
+    display:flex;
+    flex-wrap:nowrap;        /* stop wrapping */
+    overflow-x:auto;         /* allow scroll */
+    gap:6px;
+
+    -webkit-overflow-scrolling:touch; /* smooth scroll on phone */
+}
+
+.nav button{
+    flex:0 0 auto;           /* prevents shrinking */
+}
+
+.topbar{
+    overflow:hidden;
+}
+
+.nav{
+    display:flex;
+    flex-wrap:nowrap;
+    gap:6px;
+
+    overflow-x:auto;        /* allows scroll INSIDE nav */
+    max-width:100%;
+}
+
+.nav button{
+    flex:0 0 auto;
+    white-space:nowrap;
+}
+
+.topbar{
+    box-sizing:border-box;
+    max-width:100%;
+}
+    </style>
+</head>
+
+<body>
+
+    <div id="toast" class="toast">Order Submitted</div>
+
+    <div class="topbar">
+
+        <div class="left">
+            <img class="logo" src="../../../assets/SXJ%20Embedded%20System%20Labs%20-%20Secure%20X-Core%20J-Frame.jpg">
+            <div><b>SXJ Embedded System Labs | Spectre Group</b></div>
+        </div>
+
+        <div class="nav">
+            <button onclick="go('../index.html')">Home</button>
+            <button onclick="go('../../../index.html')">SXJ</button>
+            <button class="active" onclick="go('../products.html')">Products</button>
+            <button onclick="go('../contacts.html')">Contact</button>
+        </div>
+
+    </div>
+
+    <div class="main">
+
+        <button class="back-btn" onclick="go('../products.html')">Back</button>
+
+        <div class="card product product-card">
+
+            <h1>February Package </h1>
+
+            <div class="divider"></div>
+
+            <p class="desc">
+                description
+            </p>
+
+            <div class="divider"></div>
+
+            <div class="specs">
+                specs
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="price-box">
+                <span class="price" id="price">$49</span>
+                <span class="status" id="status"></span>
+            </div>
+
+            <div class="divider"></div>
+
+            <button class="order-btn" onclick="openOrder('February Package')">Order</button>
+
+        </div>
+
+    </div>
+
+    <div id="orderPanel" class="order-panel">
+
+        <div class="order-card">
+
+            <!-- PRODUCT PREVIEW -->
+            <div class="product-preview" id="productPreview">
+                <h3 id="productName">Product</h3>
+            </div>
+
+            <!-- FORM -->
+            <input id="name" placeholder="Full Name *">
+            <input id="address1" placeholder="Address Line 1 *">
+            <input id="address2" placeholder="Address Line 2 (Optional)">
+            <input id="contact" placeholder="Phone *">
+            <input id="social" placeholder="Social Contact (Optional)">
+
+            <button onclick="submitOrder()">Submit Order</button>
+            <button onclick="closeOrder()">Cancel</button>
+
+        </div>
+
+    </div>
+
+    <div id="orderOverlay" class="order-overlay" onclick="closeOrder()"></div>
+
+    <script>
+        window.onload = () => {
+            document.body.classList.add("loaded");
+        };
+
+        function go(url) {
+            document.body.classList.remove("loaded");
+
+            setTimeout(() => {
+                window.location.href = url;
+            }, 200);
+        }
+
+        function showToast(msg) {
+            const t = document.getElementById("toast");
+
+            t.innerText = msg;
+            t.classList.add("show");
+
+            setTimeout(() => {
+                t.classList.remove("show");
+            }, 1500);
+        }
+
+        const productData = {
+            price: 0,
+            stock: "out" // "in" | "limited" | "out"
+        };
+
+        function loadProduct() {
+            // price
+            document.getElementById("price").innerText = "$" + productData.price;
+
+            // status
+            const statusEl = document.getElementById("status");
+
+            if (productData.stock === "in") {
+                statusEl.innerText = "In Stock";
+                statusEl.className = "status in";
+            }
+            else if (productData.stock === "limited") {
+                statusEl.innerText = "Limited";
+                statusEl.className = "status limited";
+            }
+            else {
+                statusEl.innerText = "Out of Stock";
+                statusEl.className = "status out";
+            }
+        }
+
+        loadProduct();
+
+        let selectedProduct = "";
+
+        // OPEN
+        function openOrder(productName) {
+            selectedProduct = productName;
+
+            document.getElementById("productName").innerText = productName;
+
+            document.getElementById("orderPanel").classList.add("active");
+            document.getElementById("orderOverlay").classList.add("active");
+        }
+
+        // CLOSE
+        function closeOrder() {
+            document.getElementById("orderPanel").classList.remove("active");
+            document.getElementById("orderOverlay").classList.remove("active");
+        }
+
+        // SUBMIT
+        function submitOrder() {
+
+            const data = {
+                product: selectedProduct,
+                name: document.getElementById("name").value,
+                address1: document.getElementById("address1").value,
+                address2: document.getElementById("address2").value,
+                contact: document.getElementById("contact").value,
+                social: document.getElementById("social").value
+            };
+
+            // validation
+            if (!data.name || !data.address1 || !data.contact) {
+                showToast("Please fill required fields");
+                return;
+            }
+
+            console.log(data);
+
+            closeOrder();
+            showToast("Order submitted successfully");
+        }
+    </script>
+</body>
+
+</html>
